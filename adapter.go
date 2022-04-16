@@ -142,7 +142,7 @@ func New(db gdb.DB) (*Adapter, error) {
 }
 
 func (a *Adapter) createTable() error {
-
+	//PostgreSql 语句
 	_, err := a.DB.Exec(a.Ctx, fmt.Sprintf("CREATE TABLE IF NOT EXISTS %s (ptype VARCHAR(10), v0 VARCHAR(256), v1 VARCHAR(256), v2 VARCHAR(256), v3 VARCHAR(256), v4 VARCHAR(256), v5 VARCHAR(256))", a.TableName))
 	return err
 }
