@@ -42,7 +42,7 @@ func (a *Adapter) SavePolicy(model model.Model) error {
 	for ptype, ast := range model["p"] {
 		for _, rule := range ast.Policy {
 			line := savePolicyLine(ptype, rule)
-			_, err := a.DB.Ctx(a.Ctx).Model(a.TableName).Data(&line).Save()
+			_, err := a.DB.Ctx(a.Ctx).Model(a.TableName).Data(&line).Insert()
 			if err != nil {
 				return err
 			}
@@ -52,7 +52,7 @@ func (a *Adapter) SavePolicy(model model.Model) error {
 	for ptype, ast := range model["g"] {
 		for _, rule := range ast.Policy {
 			line := savePolicyLine(ptype, rule)
-			_, err := a.DB.Ctx(a.Ctx).Model(a.TableName).Data(&line).Save()
+			_, err := a.DB.Ctx(a.Ctx).Model(a.TableName).Data(&line).Insert()
 			if err != nil {
 				return err
 			}
@@ -64,7 +64,7 @@ func (a *Adapter) SavePolicy(model model.Model) error {
 
 func (a *Adapter) AddPolicy(sec string, ptype string, rule []string) error {
 	line := savePolicyLine(ptype, rule)
-	_, err := a.DB.Ctx(a.Ctx).Model(a.TableName).Data(&line).Save()
+	_, err := a.DB.Ctx(a.Ctx).Model(a.TableName).Data(&line).Insert()
 	return err
 }
 
